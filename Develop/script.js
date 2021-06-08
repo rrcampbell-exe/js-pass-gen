@@ -8,8 +8,14 @@
       window.prompt("How many characters long shall your password to be? Please enter a number between 8 and 128, inclusive.")
 
       // if else statement
+      lengthSelect();
+      if (lengthSelect >= 8 && lengthSelect <= 128) {
+        console.log("Yippee!")
+      }
+      else console.log("Invalid response.")
 
     };
+
 
     // function to prompt user for charset (lowercase, uppercase, numeric, and/or special characters))
     // question: should the below be window.prompt, or is window.confirm preferable in this case?
