@@ -10,7 +10,7 @@
         let length = "";
 
         while (length === "" || length === null || length < 8 || length > 128 ) {
-          length = prompt("How many characters long shall your password to be? Please enter a number between 8 and 128, inclusive.")
+          length = window.prompt("How many characters long shall your password to be? Please enter a number between 8 and 128, inclusive.")
         }
 
         console.log("You have chosen a password length of " + length + " characters.");
@@ -20,9 +20,26 @@
     // function to prompt user for charset (lowercase, uppercase, numeric, and/or special characters))
 
       let charSelect = function() {
-        window.confirm("Shall your password include lowercase characters?")
 
-        // if else statement
+        let charSet = "";
+
+        // function to ensure at least one character type must be accepted)
+        while (charSet === "" || charSet === null) {
+          window.alert("You must choose at least one of the following to be featured in your password: lowercase characters, UPPERCASE characters, num3r1c values, $pec!al characters.")
+          lowercase = window.confirm("Shall your password include lowercase letters?")
+
+          // if user chooses to include lowercase letters, log to console and add array of lowercase letters to lowercase variable
+          if(lowercase) {
+            console.log("You have chosen to include lowercase letters in your password.");
+            let lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+          }
+          else {
+            console.log("You have chosen to exclude lowercase letters from your password.");
+            lowercase = ""
+          }
+          return lowercase; 
+        }
+      };
 
         window.confirm("Shall your password include UPPERCASE characters?")
 
@@ -36,13 +53,9 @@
 
         // if else statement
 
-      };
+  // function to generate a password that meets criteria established based on user input
 
-  // function to validate selection criteria (at least one character type must be accepted)
-
-  // function to generate password meeting criteria established based on user input
-
-    // likely a use of Math.floor(Math.random() * [qty of items in size of array as constructed based on user feedback]
+    // likely a use of Math.floor(Math.random() * [length]
 
   // function to display password in an alert or write it on the page
 
