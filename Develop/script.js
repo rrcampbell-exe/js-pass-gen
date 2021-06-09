@@ -56,15 +56,17 @@ function writePassword() {
   let passwordLength = lengthSelect();
   let charBank = charSelect();
   let charArr = charBank.split('');
+  let finalPassword = "";
 
   for (i = 0; i < passwordLength; i++) {
     let randomIndex = Math.floor(Math.random() * charBank.length)
     console.log(charArr[randomIndex])
-  }
+    finalPassword += (charArr[randomIndex])
+  } 
 
   let passwordText = document.querySelector("#password");
 
-  passwordText.value = charBank;
+  passwordText.value = finalPassword;
 
 }
 
