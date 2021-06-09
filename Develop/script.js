@@ -29,21 +29,25 @@ let charSelect = function () {
     window.alert("You must choose at least one of the following to be featured in your password: lowercase characters, UPPERCASE characters, num3r1c values, $pec!al characters.")
     lowercase = window.confirm("Shall your password include lowercase letters?")
     uppercase = window.confirm("Shall your password include uppercase letters?")
-    // numeric = window.confirm("Shall your password include numeric characters?")
-    // special = window.confirm("Shall your password include special characters?")
+    numeric = window.confirm("Shall your password include numeric characters?")
+    special = window.confirm("Shall your password include special characters?")
 
-    // if user chooses to include lowercase letters, log to console and add array of lowercase letters to lowercase variable
+    // if user chooses to include lowercase letters, append lowercase letters to charSet
     if (lowercase) {
-      console.log("You have chosen to include lowercase letters in your password.");
       charSet += "qwertyuiopasdfghjklzxcvbnm"
     }
+    // if user chooses to include uppercase letters, append uppercase letters to charSet
     if (uppercase) {
       charSet += "QWERTYUIOPASDFGHJKLZXCVBNM"
     }
-    // else {
-    //   console.log("You have chosen to exclude lowercase letters from your password.");
-    //   charSet = ""
-    // }
+    // // if user chooses to include numeric values, append numeric values to charSet
+    if (numeric) {
+      charSet += "0123456789"
+    }
+    // if user chooses to include special characters, append special characters to charSet
+    if (special) {
+      charSet += "!#$%&'()*+,-./:;<=>?@][^_`}{|~"
+    }
   }
   return charSet;
 };
