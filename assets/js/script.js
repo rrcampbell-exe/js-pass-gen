@@ -2,14 +2,11 @@
 
 // function to prompt user for password length
 let lengthSelect = function () {
-  // debugger;
   let length = "";
 
   while (length === "" || length === null || length < 8 || length > 128) {
-    length = window.prompt("How many characters long shall your password to be? Please enter a number between 8 and 128, inclusive.")
+    length = window.prompt("How many characters long shall your password be? Please enter a number between 8 and 128, inclusive.")
   }
-
-  console.log("You have chosen a password length of " + length + " characters.");
   return length;
 };
 
@@ -22,7 +19,7 @@ let charSelect = function () {
 
   // function to ensure at least one character type must be accepted)
   while (!lowercase && !uppercase && !numeric && !special) {
-    window.alert("You must choose at least one of the following to be featured in your password: lowercase characters, UPPERCASE characters, num3r1c values, $pec!al characters.")
+    window.alert("You must choose at least one of the following to be featured in your password: lowercase letters, UPPERCASE letters, num3r1c values, $pec!al characters.")
     lowercase = window.confirm("Shall your password include lowercase letters?")
     uppercase = window.confirm("Shall your password include uppercase letters?")
     numeric = window.confirm("Shall your password include numeric characters?")
@@ -62,7 +59,7 @@ function writePassword() {
     let randomIndex = Math.floor(Math.random() * charBank.length)
     console.log(charArr[randomIndex])
     finalPassword += (charArr[randomIndex])
-  } 
+  }
 
   let passwordText = document.querySelector("#password");
 
