@@ -1,64 +1,128 @@
 // universal variables and constants
-const form = document.querySelector(".prompt-form")
+const lowercase = document.querySelector("#lowercase")
+const uppercase = document.querySelector("#uppercase")
+const numeric = document.querySelector("#numeric")
+const special = document.querySelector("#special")
 
-// function to prompt user for password length
-function lengthSelect () {
+let pwdDataObj = {
+  length: "",
+  charSet: []
+}
+
+// DISPLAY FUNCTIONS
+function displayBody() {
+  $(".card").fadeIn(2000)
+}
+
+function displayLengthPrompt() {
+  $("#pwd-length-container").fadeIn(3000)
+  $("#pwd-length-container").css("display", "flex")
+}
+
+function displayParameterPrompt() {
+  $("#pwd-length-container").css("display", "none")
+  $("#pwd-parameter-container").fadeIn(1500)
+}
+
+function hideLowercaseBox() {
+  $("#lowercase, #lowercase-label").fadeOut(1500)
+}
+
+function hideUppercaseBox() {
+  $("#uppercase, #uppercase-label").fadeOut(1500)
+}
+
+function hideNumericBox() {
+  $("#numeric, #numeric-label").fadeOut(1500)
+}
+
+function hideSpecialBox() {
+  $("#special, #special-label").fadeOut(1500)
+}
+
+function displayGenPwdBtn() {
+  if (lowercase.checked || uppercase.checked || numeric.checked || special.checked) {
+    $("#generate").fadeIn(1500)
+  }
+}
+
+// function to evaluate password length
+function lengthSelect() {
   let length = document.querySelector("#pwd-length").value;
-  console.log(length)
+  pwdDataObj.length = parseInt(length)
+  console.log(pwdDataObj)
+  console.log(typeof (pwdDataObj.length))
+
 
   if (length === "" || length === null || length < 8 || length > 128) {
-    const lengthPlaceholder = document.querySelector("#pwd-length").placeholder 
-    lengthPlaceholder.textContent = "Password length must be between 8 and 128 characters!"
+    const lengthPlaceholder = document.querySelector("#pwd-length")
+    lengthPlaceholder.value = ""
+    lengthPlaceholder.placeholder = "Number must be between 8 and 128, inclusive!"
+    $("#pwd-length").effect("shake", { times: 3 }, 500)
+    return;
   } else {
-    return length;
+    logPwdDataObj();
+    displayParameterPrompt();
+    return pwdDataObj.length;
   }
 };
 
 // event listener for click on button to submit password length
 $("#pwd-length-submit").click(lengthSelect)
 
-// function to prompt user for charset choices (lowercase, uppercase, numeric, and/or special characters))
+// display pwdDataObj
+function logPwdDataObj() {
+  console.log(pwdDataObj)
+}
 
-let charSelect = function () {
+// event listener for lowercase checkbox
+lowercase.addEventListener("change", function() {
+  let lowerCharSet = "qwertyuiopasdfghjklzxcvbnm"
+  if (this.checked) {
+    pwdDataObj.charSet += lowerCharSet
+    hideLowercaseBox();
+    console.log(pwdDataObj)
+  } 
+})
 
-  let lowercase, uppercase, numeric, special;
-  let charSet = "";
-
-  // function to ensure at least one character type must be accepted)
-  while (!lowercase && !uppercase && !numeric && !special) {
-    window.alert("You must choose at least one of the following to be featured in your password: lowercase letters, UPPERCASE letters, num3r1c values, $pec!al characters.")
-    lowercase = window.confirm("Shall your password include lowercase letters?")
-    uppercase = window.confirm("Shall your password include uppercase letters?")
-    numeric = window.confirm("Shall your password include numeric characters?")
-    special = window.confirm("Shall your password include special characters?")
-
-    // if user chooses to include lowercase letters, append lowercase letters to charSet
-    if (lowercase) {
-      charSet += "qwertyuiopasdfghjklzxcvbnm"
-    }
-    // if user chooses to include uppercase letters, append uppercase letters to charSet
-    if (uppercase) {
-      charSet += "QWERTYUIOPASDFGHJKLZXCVBNM"
-    }
-    // // if user chooses to include numeric values, append numeric values to charSet
-    if (numeric) {
-      charSet += "0123456789"
-    }
-    // if user chooses to include special characters, append special characters to charSet
-    if (special) {
-      charSet += "!#$%&'()*+,-./:;<=>?@][^_`}{|~"
-    }
+// event listener for uppercase checkbox
+uppercase.addEventListener("change", function() {
+  let upperCharSet = "QWERTYUIOPASDFGHJKLZXCVBNM"
+  if (this.checked) {
+    hideUppercaseBox();
+    pwdDataObj.charSet += upperCharSet
+    console.log(pwdDataObj)
   }
-  return charSet;
-};
+})
+
+// event listener for numeric checkbox
+numeric.addEventListener("change", function() {
+  let numberCharSet = "0123456789"
+  if (this.checked) {
+    hideNumericBox();
+    pwdDataObj.charSet += numberCharSet
+    console.log(pwdDataObj)
+  }
+})
+
+// event listener for special checkbox
+special.addEventListener("change", function() {
+  let specialCharSet = "!#$%&'()*+,-./:;<=>?@][^_`}{|~"
+  if (this.checked) {
+    hideSpecialBox();
+    pwdDataObj.charSet += specialCharSet
+    console.log(pwdDataObj)
+  }
+})
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  let passwordLength = lengthSelect();
-  let charBank = charSelect();
+  let passwordLength = pwdDataObj.length
+  console.log(passwordLength);
+  let charBank = pwdDataObj.charSet
   let charArr = charBank.split('');
   let finalPassword = "";
 
@@ -74,5 +138,9 @@ function writePassword() {
 
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+// Run writePassword on "Generate Password" button click
+$("#generate").click(writePassword)
+
+// run these on load
+displayBody();
+displayLengthPrompt();

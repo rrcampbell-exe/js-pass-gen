@@ -17,27 +17,27 @@
           <h2>Generate a Password</h2>
         </div>
         <div class="card-body">
-          <form class="prompt-form">
+          <div class="prompt-form">
             <div id="pwd-length-container">
               <p>How many characters long shall your password be?</p>
               <input type="text" id="pwd-length" name="pwd-length" placeholder="Please select a number between 8 and 128, inclusive."><br>
-              <input type="submit" id="pwd-length-submit" class="btn">
+              <button id="pwd-length-submit" class="btn">Submit</button>
             </div>
             <div id="pwd-parameter-container">
               <p>Please choose the types of characters your password should include.</p>
               <div id="checkbox-container">
-                <input type="checkbox" id="pwd-parameter-lowercase" name="pwd-parameter-lowercase" value="lowercase">
-                <label for="pwd-parameter-lowercase" class="checkbox-options"> lowercase</label>
-                <input type="checkbox" id="pwd-parameter-uppercase" name="pwd-parameter-uppercase" value="uppercase">
-                <label for="pwd-parameter-uppercase" class="checkbox-options"> uppercase</label>
-                <input type="checkbox" id="pwd-parameter-numeric" name="pwd-parameter-numeric" value="numeric">
-                <label for="pwd-parameter-numeric" class="checkbox-options"> numeric</label>
-                <input type="checkbox" id="pwd-parameter-special" name="pwd-parameter-special" value="special">
-                <label for="pwd-parameter-special"> special</label>
+                <input type="checkbox" id="lowercase" name="lowercase" value="lowercase">
+                <label for="lowercase" id ="lowercase-label" class="checkbox-options"> lowercase</label>
+                <input type="checkbox" id="uppercase" name="uppercase" value="uppercase">
+                <label for="uppercase" id ="uppercase-label" class="checkbox-options"> uppercase</label>
+                <input type="checkbox" id="numeric" name="numeric" value="numeric">
+                <label for="numeric" id ="numeric-label" class="checkbox-options"> numeric</label>
+                <input type="checkbox" id="special" name="special" value="special">
+                <label for="special" id ="special-label"> special</label>
               </div>
               <input type="submit" id="generate" class="btn" value="Generate Password">
             </div>
-          </form>
+          </div>
           <textarea
             readonly
             id="password"
@@ -46,11 +46,12 @@
           ></textarea>
         </div>
         <div class="card-footer">
-          <button id="generate" class="btn" >Generate Password</button>
+          <button id="new-pwd" class="btn" >Generate New Password</button>
         </div>
       </div>
     </div>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
