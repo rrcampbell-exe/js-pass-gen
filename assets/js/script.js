@@ -1,14 +1,21 @@
-// Assignment code here
+// universal variables and constants
+const form = document.querySelector(".prompt-form")
 
 // function to prompt user for password length
-let lengthSelect = function () {
-  let length = "";
+function lengthSelect () {
+  let length = document.querySelector("#pwd-length").value;
+  console.log(length)
 
-  while (length === "" || length === null || length < 8 || length > 128) {
-    length = window.prompt("How many characters long shall your password be? Please enter a number between 8 and 128, inclusive.")
+  if (length === "" || length === null || length < 8 || length > 128) {
+    const lengthPlaceholder = document.querySelector("#pwd-length").placeholder 
+    lengthPlaceholder.textContent = "Password length must be between 8 and 128 characters!"
+  } else {
+    return length;
   }
-  return length;
 };
+
+// event listener for click on button to submit password length
+$("#pwd-length-submit").click(lengthSelect)
 
 // function to prompt user for charset choices (lowercase, uppercase, numeric, and/or special characters))
 
