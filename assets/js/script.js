@@ -3,6 +3,7 @@ const lowercase = document.querySelector("#lowercase")
 const uppercase = document.querySelector("#uppercase")
 const numeric = document.querySelector("#numeric")
 const special = document.querySelector("#special")
+const checkboxContainer = document.querySelector("#checkbox-container")
 
 let pwdDataObj = {
   length: "",
@@ -24,6 +25,10 @@ function displayParameterPrompt() {
   $("#pwd-parameter-container").fadeIn(1500)
 }
 
+function hideParameterPrompt() {
+  $("#pwd-parameter-container").css("display", "none")
+}
+
 function hideLowercaseBox() {
   $("#lowercase, #lowercase-label").fadeOut(1500)
 }
@@ -41,9 +46,26 @@ function hideSpecialBox() {
 }
 
 function displayGenPwdBtn() {
-  if (lowercase.checked || uppercase.checked || numeric.checked || special.checked) {
-    $("#generate").fadeIn(1500)
+  $("#generate").css("visibility", "visible")
+  $("#generate").fadeIn(1500)
+}
+
+// display "generate password" button once any parameter is chosen
+checkboxContainer.addEventListener("click", (event) => {
+  const isInput = event.target.nodeName === "INPUT";
+  if (!isInput) {
+    return;
   }
+
+  displayGenPwdBtn();
+})
+
+function displayPwd() {
+  $("#password").fadeIn(1500)
+}
+
+function displayFooter() {
+  $(".card-footer").fadeIn(1500)
 }
 
 // function to evaluate password length
@@ -138,8 +160,14 @@ function writePassword() {
 
 }
 
-// Run writePassword on "Generate Password" button click
+// run these functions on "Generate Password" click
 $("#generate").click(writePassword)
+$("#generate").click(displayPwd)
+$("#generate").click(hideParameterPrompt)
+$("#generate").click(displayFooter)
+
+// use "puff" effect to blow up card body before regenerating it for new password
+
 
 // run these on load
 displayBody();
