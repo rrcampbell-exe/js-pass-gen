@@ -178,6 +178,8 @@ $("#new-pwd").click(newPassword)
 function newPassword() {
   $(".card").effect("puff")
   $("#password, .card-footer").css("display", "none")
+  $("#generate").css("display", "none")
+  pwdDataObj.charSet = []
   lengthPlaceholder.value = ""
   lengthPlaceholder.placeholder = "Please select a number between 8 and 128, inclusive."
   displayLengthPrompt();

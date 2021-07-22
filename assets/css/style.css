@@ -80,6 +80,10 @@ div {
   justify-content: center;
 }
 
+.footer-btn-container {
+  display:block;
+}
+
 #pwd-length-container {
   display: none;
   flex-direction: column;
