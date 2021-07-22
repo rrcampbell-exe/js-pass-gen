@@ -4,8 +4,10 @@ const uppercase = document.querySelector("#uppercase")
 const numeric = document.querySelector("#numeric")
 const special = document.querySelector("#special")
 const checkboxContainer = document.querySelector("#checkbox-container")
-const lengthPlaceholder = document.querySelector("#pwd-length")
+// const lengthPlaceholder = document.querySelector("#pwd-length")
 const genPwdBtn = document.querySelector("#generate")
+const slider = document.querySelector("#pwd-length")
+let dispPwdLength = document.querySelector("#disp-pwd-length")
 
 let pwdDataObj = {
   length: "",
@@ -20,6 +22,17 @@ function displayBody() {
 function displayLengthPrompt() {
   $("#pwd-length-container").fadeIn(3000)
   $("#pwd-length-container").css("display", "flex")
+}
+
+// displaying the slider and its value dynamically
+dispPwdLength.innerHTML = slider.value
+slider.oninput = function() {
+  console.log(this.value)
+  dispPwdLength.innerHTML = this.value
+}
+
+function shakeSlider() {
+  $("#pwd-length").effect("shake", { times: 2 }, 3000)
 }
 
 function displayParameterPrompt() {
@@ -81,20 +94,9 @@ function displayFooter() {
 function lengthSelect() {
   let length = document.querySelector("#pwd-length").value;
   pwdDataObj.length = parseInt(length)
-  console.log(pwdDataObj)
-  console.log(typeof (pwdDataObj.length))
-
-
-  if (length === "" || length === null || length < 8 || length > 128) {
-    lengthPlaceholder.value = ""
-    lengthPlaceholder.placeholder = "Number must be between 8 and 128, inclusive!"
-    $("#pwd-length").effect("shake", { times: 3 }, 500)
-    return;
-  } else {
-    logPwdDataObj();
-    displayParameterPrompt();
-    return pwdDataObj.length;
-  }
+  logPwdDataObj();
+  displayParameterPrompt();
+  return pwdDataObj.length;
 };
 
 // event listener for click on button to submit password length
@@ -178,15 +180,13 @@ $("#generate").click(restoreParameters)
 // run this function on "Generate New Password" click
 $("#new-pwd").click(newPassword)
 function newPassword() {
-  $(".card").effect("puff")
+  $(".card").effect("puff", { percent: 120 })
   $("#password, .card-footer").css("display", "none")
   pwdDataObj.charSet = []
-  lengthPlaceholder.value = ""
-  lengthPlaceholder.placeholder = "Please enter a number between 8 and 128, inclusive."
   genPwdBtn.disabled = true
   genPwdBtn.value = "Make a Selection"
-  displayLengthPrompt();
   displayBody()
+  displayLengthPrompt();
 }
 
 // function to copy text of password to clipboard
@@ -203,3 +203,4 @@ $("#copy-btn").click(copyToClipboard)
 // run these on load
 displayBody();
 displayLengthPrompt();
+shakeSlider();

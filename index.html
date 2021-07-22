@@ -12,9 +12,6 @@
       <source src="assets/css/video/background.mp4">
     </video>
     <div class="wrapper">
-      <!-- <header>
-        <h1>Password Generator</h1>
-      </header> -->
       <div class="card">
         <header class="card-header">
           <h1>Password Generator</h1>
@@ -22,8 +19,10 @@
         <div class="card-body">
           <div class="prompt-form">
             <div id="pwd-length-container">
-              <p>How many characters long shall your password be?</p>
-              <input type="text" id="pwd-length" name="pwd-length" placeholder="Please enter a number between 8 and 128, inclusive."><br>
+              <p>I'd like my password to be <span id="disp-pwd-length"></span> characters long.</p>
+              <div class="slide-container">
+                <input type="range" min="8" max="128" value="68" class="slider" id="pwd-length">
+              </div>
               <button id="pwd-length-submit" class="btn">Submit</button>
             </div>
             <div id="pwd-parameter-container">
