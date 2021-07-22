@@ -4,6 +4,7 @@ const uppercase = document.querySelector("#uppercase")
 const numeric = document.querySelector("#numeric")
 const special = document.querySelector("#special")
 const checkboxContainer = document.querySelector("#checkbox-container")
+const lengthPlaceholder = document.querySelector("#pwd-length")
 
 let pwdDataObj = {
   length: "",
@@ -45,6 +46,11 @@ function hideSpecialBox() {
   $("#special, #special-label").fadeOut(1500)
 }
 
+function restoreParameters() {
+  $("#lowercase, #lowercase-label, #uppercase, #uppercase-label, #numeric, #numeric-label, #special, #special-label").fadeIn(1500);
+  $("#lowercase, #lowercase-label, #uppercase, #uppercase-label, #numeric, #numeric-label, #special, #special-label").prop("checked", false);
+}
+
 function displayGenPwdBtn() {
   $("#generate").css("visibility", "visible")
   $("#generate").fadeIn(1500)
@@ -66,6 +72,7 @@ function displayPwd() {
 
 function displayFooter() {
   $(".card-footer").fadeIn(1500)
+  $("#new-pwd").fadeIn(1500)
 }
 
 // function to evaluate password length
@@ -77,7 +84,6 @@ function lengthSelect() {
 
 
   if (length === "" || length === null || length < 8 || length > 128) {
-    const lengthPlaceholder = document.querySelector("#pwd-length")
     lengthPlaceholder.value = ""
     lengthPlaceholder.placeholder = "Number must be between 8 and 128, inclusive!"
     $("#pwd-length").effect("shake", { times: 3 }, 500)
@@ -165,9 +171,18 @@ $("#generate").click(writePassword)
 $("#generate").click(displayPwd)
 $("#generate").click(hideParameterPrompt)
 $("#generate").click(displayFooter)
+$("#generate").click(restoreParameters)
 
-// use "puff" effect to blow up card body before regenerating it for new password
-
+// run this function on "Generate New Password" click
+$("#new-pwd").click(newPassword)
+function newPassword() {
+  $(".card").effect("puff")
+  $("#password, .card-footer").css("display", "none")
+  lengthPlaceholder.value = ""
+  lengthPlaceholder.placeholder = "Please select a number between 8 and 128, inclusive."
+  displayLengthPrompt();
+  displayBody()
+}
 
 // run these on load
 displayBody();
