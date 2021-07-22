@@ -184,6 +184,17 @@ function newPassword() {
   displayBody()
 }
 
+// function to copy text of password to clipboard
+function copyToClipboard() {
+  const passwordText = document.querySelector("#password")
+  passwordText.select();
+  passwordText.setSelectionRange(0,99999)
+  document.execCommand("copy");
+}
+
+// run copyToClipboard on button click
+$("#copy-btn").click(copyToClipboard)
+
 // run these on load
 displayBody();
 displayLengthPrompt();
