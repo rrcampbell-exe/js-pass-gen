@@ -5,6 +5,7 @@ const numeric = document.querySelector("#numeric")
 const special = document.querySelector("#special")
 const checkboxContainer = document.querySelector("#checkbox-container")
 const lengthPlaceholder = document.querySelector("#pwd-length")
+const genPwdBtn = document.querySelector("#generate")
 
 let pwdDataObj = {
   length: "",
@@ -52,18 +53,19 @@ function restoreParameters() {
 }
 
 function displayGenPwdBtn() {
-  $("#generate").css("visibility", "visible")
   $("#generate").fadeIn(1500)
+  // $("#generate").css("display", "flex")
 }
 
-// display "generate password" button once any parameter is chosen
+// un-disable "generate password" button once any parameter is chosen
 checkboxContainer.addEventListener("click", (event) => {
   const isInput = event.target.nodeName === "INPUT";
   if (!isInput) {
     return;
   }
 
-  displayGenPwdBtn();
+  genPwdBtn.disabled = false
+  genPwdBtn.value = "Generate Password"
 })
 
 function displayPwd() {
@@ -178,10 +180,11 @@ $("#new-pwd").click(newPassword)
 function newPassword() {
   $(".card").effect("puff")
   $("#password, .card-footer").css("display", "none")
-  $("#generate").css("display", "none")
   pwdDataObj.charSet = []
   lengthPlaceholder.value = ""
-  lengthPlaceholder.placeholder = "Please select a number between 8 and 128, inclusive."
+  lengthPlaceholder.placeholder = "Please enter a number between 8 and 128, inclusive."
+  genPwdBtn.disabled = true
+  genPwdBtn.value = "Make a Selection"
   displayLengthPrompt();
   displayBody()
 }

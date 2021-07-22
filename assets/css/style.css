@@ -17,30 +17,37 @@ body {
   background-color: #f9fbfd;
 }
 
-.wrapper {
-  padding-top: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
+#background-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -999;
 }
 
 header {
   text-align: center;
   padding: 20px;
   padding-top: 0px;
-  color: hsl(206, 17%, 28%);
+  color: hsl(0, 0%, 100%);
 }
 
 .card {
-  background-color: hsl(0, 0%, 100%);
+  background-color: rgba(87, 85, 85, 0.9);
   border-radius: 5px;
   border-width: 1px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
-  color: hsl(206, 17%, 28%);
+  color: hsl(0, 0%, 100%);
   font-size: 18px;
   margin: 0 auto;
   width: 80%;
   padding: 30px 40px;
   display: none;
+}
+
+.card-header {
+  text-align: center;
 }
 
 .card-header::after {
@@ -91,9 +98,13 @@ div {
   text-align: center;
 }
 
+#pwd-length {
+  border-radius: 5px;
+}
+
 input[type="text"] {
   width: 35%;
-  line-height: 1.2rem;
+  line-height: 22px;
   margin: auto;
 }
 
@@ -112,17 +123,16 @@ input[type="text"] {
 
 .checkbox-options {
   padding-right: 10px;
-  border-right: 1px solid black;
+  border-right: 1px solid hsl(0, 0%, 100%);;
 }
 
-#generate {
+/* #generate {
   display: none;
-  visibility: hidden;
-}
+} */
 
 .btn {
   border: none;
-  background-color: hsl(360, 91%, 36%);
+  background-color: rgb(43, 149, 211);
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
     0px;
@@ -134,11 +144,17 @@ input[type="text"] {
   padding: 14px 34px;
   text-align: center;
   cursor: pointer;
+  transition-duration: 0.5s;
 }
 
-button[disabled] {
+.btn:hover {
+  transform: scale(1.05)
+}
+
+input[disabled], input[disabled]:hover {
   cursor: default;
-  background: #c0c7cf;
+  background-color: #c0c7cf;
+  transform: scale(1)
 }
 
 .float-right {
@@ -149,21 +165,27 @@ button[disabled] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border: none;
   display: none;
   width: 100%;
   padding-top: 15px;
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 85px;
-  font-size: 1.2rem;
+  font-size: 2.4vw;
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
-  border: 2px dashed #c0c7cf;
+  border: 2px dashed hsl(0, 0%, 100%);
   border-radius: 6px;
   resize: none;
   overflow: hidden;
+  background-color:rgba(255, 255, 255, 0.5);
+  color: hsl(0, 0%, 100%);
+}
+
+#new-pwd, #copy-btn {
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 @media (max-width: 690px) {
@@ -180,6 +202,10 @@ button[disabled] {
 
 @media (max-width: 500px) {
   .btn {
+    font-size: 0.8rem;
+  }
+
+    #password {
     font-size: 0.8rem;
   }
 }

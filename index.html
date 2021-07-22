@@ -8,19 +8,22 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
+    <video autoplay muted loop id="background-video">
+      <source src="assets/css/video/background.mp4">
+    </video>
     <div class="wrapper">
-      <header>
+      <!-- <header>
         <h1>Password Generator</h1>
-      </header>
+      </header> -->
       <div class="card">
-        <div class="card-header">
-          <h2>Generate a Password</h2>
-        </div>
+        <header class="card-header">
+          <h1>Password Generator</h1>
+        </header>
         <div class="card-body">
           <div class="prompt-form">
             <div id="pwd-length-container">
               <p>How many characters long shall your password be?</p>
-              <input type="text" id="pwd-length" name="pwd-length" placeholder="Please select a number between 8 and 128, inclusive."><br>
+              <input type="text" id="pwd-length" name="pwd-length" placeholder="Please enter a number between 8 and 128, inclusive."><br>
               <button id="pwd-length-submit" class="btn">Submit</button>
             </div>
             <div id="pwd-parameter-container">
@@ -35,7 +38,7 @@
                 <input type="checkbox" id="special" name="special" value="special">
                 <label for="special" id ="special-label"> special</label>
               </div>
-              <input type="submit" id="generate" class="btn" value="Generate Password">
+              <input type="submit" id="generate" class="btn" value="Make a Selection" disabled>
             </div>
           </div>
           <textarea
@@ -48,7 +51,7 @@
         <div class="card-footer">
           <div class="footer-btn-container">
             <button id="new-pwd" class="btn" >Generate New Password</button>
-            <button id="copy-btn" class="btn" >Copy Password to Clipboard</button>
+            <button id="copy-btn" class="btn" >Copy to Clipboard</button>
           </div>
         </div>
       </div>
